@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="stu_dbModelStoreContainer" CdmEntityContainer="stu_dbEntities">
+    <EntitySetMapping Name="lec_module">
+      <EntityTypeMapping TypeName="stu_dbModel.lec_module">
+        <MappingFragment StoreEntitySet="lec_module">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="lecturer" ColumnName="lecturer" />
+          <ScalarProperty Name="module" ColumnName="module" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lecturers">
+      <EntityTypeMapping TypeName="stu_dbModel.lecturer">
+        <MappingFragment StoreEntitySet="lecturer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="uni_id" ColumnName="uni_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modules">
+      <EntityTypeMapping TypeName="stu_dbModel.module">
+        <MappingFragment StoreEntitySet="module">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stu_module">
+      <EntityTypeMapping TypeName="stu_dbModel.stu_module">
+        <MappingFragment StoreEntitySet="stu_module">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="student" ColumnName="student" />
+          <ScalarProperty Name="module" ColumnName="module" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="stu_dbModel.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="uniId" ColumnName="uniId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="degree" ColumnName="degree" />
+          <ScalarProperty Name="intakeYear" ColumnName="intakeYear" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="stu_dbModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

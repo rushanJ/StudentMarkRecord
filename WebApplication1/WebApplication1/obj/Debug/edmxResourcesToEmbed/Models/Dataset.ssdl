@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="stu_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="lec_module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lecturer" Type="int" Nullable="false" />
+    <Property Name="module" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lecturer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uni_id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="100" />
+    <Property Name="email" Type="nchar" MaxLength="70" />
+    <Property Name="password" Type="nchar" MaxLength="30" />
+    <Property Name="status" Type="nchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="70" />
+    <Property Name="credit" Type="int" />
+  </EntityType>
+  <EntityType Name="stu_module">
+    <Key>
+      <PropertyRef Name="student" />
+      <PropertyRef Name="module" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="student" Type="int" Nullable="false" />
+    <Property Name="module" Type="int" Nullable="false" />
+    <Property Name="mark" Type="float" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uniId" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="100" />
+    <Property Name="email" Type="nchar" MaxLength="70" />
+    <Property Name="degree" Type="nchar" MaxLength="40" />
+    <Property Name="intakeYear" Type="int" />
+    <Property Name="status" Type="nchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityContainer Name="stu_dbModelStoreContainer">
+    <EntitySet Name="lec_module" EntityType="Self.lec_module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lecturer" EntityType="Self.lecturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="module" EntityType="Self.module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="stu_module" EntityType="Self.stu_module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
