@@ -12,14 +12,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.module)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.module)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.mark)
         </dt>
 
@@ -28,11 +20,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.student1.uniId)
+            @Html.DisplayNameFor(model => model.lec_module.id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.student1.uniId)
+            @Html.DisplayFor(model => model.lec_module.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.student1.uni_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.student1.uni_id)
         </dd>
 
     </dl>

@@ -13,10 +13,10 @@ namespace WebApplication1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class stu_dbEntities2 : DbContext
+    public partial class student_dataEntities : DbContext
     {
-        public stu_dbEntities2()
-            : base("name=stu_dbEntities2")
+        public student_dataEntities()
+            : base("name=student_dataEntities")
         {
         }
     
@@ -30,6 +30,5 @@ namespace WebApplication1.Models
         public virtual DbSet<module> modules { get; set; }
         public virtual DbSet<stu_module> stu_module { get; set; }
         public virtual DbSet<student> students { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

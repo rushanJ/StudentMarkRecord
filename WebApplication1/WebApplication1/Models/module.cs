@@ -23,7 +23,7 @@ namespace WebApplication1.Models
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public Nullable<int> credit { get; set; }
+        public int credit { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lec_module> lec_module { get; set; }

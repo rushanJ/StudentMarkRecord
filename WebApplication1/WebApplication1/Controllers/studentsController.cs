@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class studentsController : Controller
     {
-        private stu_dbEntities2 db = new stu_dbEntities2();
+        private student_dataEntities db = new student_dataEntities();
 
         // GET: students
         public async Task<ActionResult> Index()
@@ -47,7 +47,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,uniId,name,email,degree,intakeYear,status")] student student)
+        public async Task<ActionResult> Create([Bind(Include = "id,uni_id,firstName,lastName,email,intake,faculty,degree,studentStatus")] student student)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,uniId,name,email,degree,intakeYear,status")] student student)
+        public async Task<ActionResult> Edit([Bind(Include = "id,uni_id,firstName,lastName,email,intake,faculty,degree,studentStatus")] student student)
         {
             if (ModelState.IsValid)
             {

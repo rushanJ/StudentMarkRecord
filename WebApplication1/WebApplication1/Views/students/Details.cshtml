@@ -11,19 +11,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.uniId)
+            @Html.DisplayNameFor(model => model.uni_id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.uniId)
+            @Html.DisplayFor(model => model.uni_id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayNameFor(model => model.firstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.name)
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
         </dd>
 
         <dt>
@@ -35,6 +43,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.intake)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intake)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.faculty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.faculty)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.degree)
         </dt>
 
@@ -43,19 +67,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.intakeYear)
+            @Html.DisplayNameFor(model => model.studentStatus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.intakeYear)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
+            @Html.DisplayFor(model => model.studentStatus)
         </dd>
 
     </dl>

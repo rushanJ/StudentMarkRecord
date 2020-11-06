@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1087f0e1f3da48aa8c5fda402d172556" Name="Diagram1">
-        <EntityTypeShape EntityType="stu_dbModel.lec_module" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="stu_dbModel.lecturer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="stu_dbModel.module" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="stu_dbModel.stu_module" Width="1.5" PointX="5" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="stu_dbModel.student" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="stu_dbModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="stu_dbModel.FK_lec_module_lecturer" ManuallyRouted="false" />
-        <AssociationConnector Association="stu_dbModel.FK_lec_module_module" ManuallyRouted="false" />
-        <AssociationConnector Association="stu_dbModel.FK_stu_module_student" ManuallyRouted="false" />
+      <Diagram DiagramId="9ad450b1b3f0400f8ac9038f7843e73f" Name="Diagram1">
+        <EntityTypeShape EntityType="student_dataModel.lec_module" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_dataModel.lecturer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_dataModel.module" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_dataModel.stu_module" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_dataModel.student" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="student_dataModel.lec_module_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="student_dataModel.lec_module_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="student_dataModel.pk1" ManuallyRouted="false" />
+        <AssociationConnector Association="student_dataModel.pk2" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

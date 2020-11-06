@@ -1,0 +1,58 @@
+CREATE DATABASE student_data
+
+USE student_data
+
+
+CREATE TABLE lecturer (
+  id INT  PRIMARY KEY IDENTITY (1, 1),
+  uni_id varchar(10) NOT NULL,
+  firstName varchar(70) NOT NULL,
+  lastName varchar(70) NOT NULL,
+  email varchar(30) NOT NULL,
+  password varchar(30) NOT NULL,
+  lecturerStatus VARCHAR(10) NOT NULL CHECK (lecturerStatus IN('ACTIVE', 'INACTIVE'))
+) 
+
+
+
+
+
+
+CREATE TABLE module (
+   id INT  PRIMARY KEY IDENTITY (1, 1),
+  code varchar(20) NOT NULL,
+  name varchar(70) NOT NULL,
+  credit int NOT NULL
+) 
+
+
+CREATE TABLE student (
+   id INT  PRIMARY KEY IDENTITY (1, 1),
+  uni_id varchar(10) NOT NULL,
+  firstName varchar(70) NOT NULL,
+  lastName varchar(70) NOT NULL,
+  email varchar(70) NOT NULL,
+  intake int NOT NULL,
+  faculty varchar(70) NOT NULL,
+  degree varchar(70) NOT NULL,
+  studentStatus  VARCHAR(10) NOT NULL CHECK (studentStatus IN('ACTIVE', 'INACTIVE'))
+) 
+
+
+CREATE TABLE lec_module (
+   id INT  PRIMARY KEY IDENTITY (1, 1),
+  lecturer int NOT NULL,
+  module int NOT NULL,
+   CONSTRAINT lec_module_ibfk_1 FOREIGN KEY (module) REFERENCES module (id),
+   CONSTRAINT lec_module_ibfk_2 FOREIGN KEY (lecturer) REFERENCES lecturer (id)
+) 
+
+CREATE TABLE stu_module (
+   id INT  PRIMARY KEY IDENTITY (1, 1),
+  student int NOT NULL,
+  module int NOT NULL,
+  mark int NOT NULL,
+     CONSTRAINT pk1 FOREIGN KEY (module) REFERENCES lec_module (id),
+  CONSTRAINT pk2 FOREIGN KEY (student) REFERENCES student (id)
+) 
+

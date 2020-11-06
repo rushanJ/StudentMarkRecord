@@ -13,12 +13,12 @@ namespace WebApplication1.Controllers
 {
     public class stu_moduleController : Controller
     {
-        private stu_dbEntities2 db = new stu_dbEntities2();
+        private student_dataEntities db = new student_dataEntities();
 
         // GET: stu_module
         public async Task<ActionResult> Index()
         {
-            var stu_module = db.stu_module.Include(s => s.student1);
+            var stu_module = db.stu_module.Include(s => s.lec_module).Include(s => s.student1);
             return View(await stu_module.ToListAsync());
         }
 
@@ -40,7 +40,8 @@ namespace WebApplication1.Controllers
         // GET: stu_module/Create
         public ActionResult Create()
         {
-            ViewBag.student = new SelectList(db.students, "id", "uniId");
+            ViewBag.module = new SelectList(db.modules, "id", "name");
+            ViewBag.student = new SelectList(db.students, "id", "uni_id");
             return View();
         }
 
@@ -58,7 +59,8 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.student = new SelectList(db.students, "id", "uniId", stu_module.student);
+            ViewBag.module = new SelectList(db.lec_module, "id", "id", stu_module.module);
+            ViewBag.student = new SelectList(db.students, "id", "uni_id", stu_module.student);
             return View(stu_module);
         }
 
@@ -74,7 +76,8 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.student = new SelectList(db.students, "id", "uniId", stu_module.student);
+            ViewBag.module = new SelectList(db.lec_module, "id", "id", stu_module.module);
+            ViewBag.student = new SelectList(db.students, "id", "uni_id", stu_module.student);
             return View(stu_module);
         }
 
@@ -91,7 +94,8 @@ namespace WebApplication1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.student = new SelectList(db.students, "id", "uniId", stu_module.student);
+            ViewBag.module = new SelectList(db.lec_module, "id", "id", stu_module.module);
+            ViewBag.student = new SelectList(db.students, "id", "uni_id", stu_module.student);
             return View(stu_module);
         }
 

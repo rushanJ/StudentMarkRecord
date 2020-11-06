@@ -15,7 +15,10 @@
             @Html.DisplayNameFor(model => model.uni_id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.email)
@@ -24,7 +27,7 @@
             @Html.DisplayNameFor(model => model.password)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.status)
+            @Html.DisplayNameFor(model => model.lecturerStatus)
         </th>
         <th></th>
     </tr>
@@ -35,7 +38,10 @@
             @Html.DisplayFor(modelItem => item.uni_id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            @Html.DisplayFor(modelItem => item.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.email)
@@ -44,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.password)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.status)
+            @Html.DisplayFor(modelItem => item.lecturerStatus)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

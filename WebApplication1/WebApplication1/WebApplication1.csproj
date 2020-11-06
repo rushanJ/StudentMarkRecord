@@ -152,6 +152,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeModule.cs" />
     <Compile Include="Models\lecturer.cs">
       <DependentUpon>DataSetModel.tt</DependentUpon>
     </Compile>
@@ -165,9 +166,6 @@
       <DependentUpon>DataSetModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\stu_module.cs">
-      <DependentUpon>DataSetModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DataSetModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,11 +228,6 @@
     <Content Include="Views\students\Details.cshtml" />
     <Content Include="Views\students\Edit.cshtml" />
     <Content Include="Views\students\Index.cshtml" />
-    <Content Include="Views\stu_module\Create.cshtml" />
-    <Content Include="Views\stu_module\Delete.cshtml" />
-    <Content Include="Views\stu_module\Details.cshtml" />
-    <Content Include="Views\stu_module\Edit.cshtml" />
-    <Content Include="Views\stu_module\Index.cshtml" />
     <Content Include="Views\modules\Create.cshtml" />
     <Content Include="Views\modules\Delete.cshtml" />
     <Content Include="Views\modules\Details.cshtml" />
@@ -250,6 +243,13 @@
     <Content Include="Views\lec_module\Details.cshtml" />
     <Content Include="Views\lec_module\Edit.cshtml" />
     <Content Include="Views\lec_module\Index.cshtml" />
+    <Content Include="Views\stu_module\Create.cshtml" />
+    <Content Include="Views\stu_module\Delete.cshtml" />
+    <Content Include="Views\stu_module\Details.cshtml" />
+    <Content Include="Views\stu_module\Edit.cshtml" />
+    <Content Include="Views\stu_module\Index.cshtml" />
+    <Content Include="Views\Home\AdminDashboard.cshtml" />
+    <Content Include="Views\Home\LecturerDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

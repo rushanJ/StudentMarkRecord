@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="stu_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="student_dataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="lec_module">
     <Key>
       <PropertyRef Name="id" />
@@ -7,30 +7,32 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="lecturer" Type="Int32" Nullable="false" />
     <Property Name="module" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="lecturer1" Relationship="Self.FK_lec_module_lecturer" FromRole="lec_module" ToRole="lecturer" />
-    <NavigationProperty Name="module1" Relationship="Self.FK_lec_module_module" FromRole="lec_module" ToRole="module" />
+    <NavigationProperty Name="module1" Relationship="Self.lec_module_ibfk_1" FromRole="lec_module" ToRole="module" />
+    <NavigationProperty Name="lecturer1" Relationship="Self.lec_module_ibfk_2" FromRole="lec_module" ToRole="lecturer" />
+    <NavigationProperty Name="stu_module" Relationship="Self.pk1" FromRole="lec_module" ToRole="stu_module" />
   </EntityType>
   <EntityType Name="lecturer">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="uni_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="70" FixedLength="true" Unicode="true" />
-    <Property Name="password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-    <Property Name="status" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="lec_module" Relationship="Self.FK_lec_module_lecturer" FromRole="lecturer" ToRole="lec_module" />
+    <Property Name="uni_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lecturerStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="lec_module" Relationship="Self.lec_module_ibfk_2" FromRole="lecturer" ToRole="lec_module" />
   </EntityType>
   <EntityType Name="module">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="70" FixedLength="true" Unicode="true" />
-    <Property Name="credit" Type="Int32" />
-    <NavigationProperty Name="lec_module" Relationship="Self.FK_lec_module_module" FromRole="module" ToRole="lec_module" />
+    <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="credit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="lec_module" Relationship="Self.lec_module_ibfk_1" FromRole="module" ToRole="lec_module" />
   </EntityType>
   <EntityType Name="stu_module">
     <Key>
@@ -39,45 +41,26 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="student" Type="Int32" Nullable="false" />
     <Property Name="module" Type="Int32" Nullable="false" />
-    <Property Name="mark" Type="Double" />
-    <NavigationProperty Name="student1" Relationship="Self.FK_stu_module_student" FromRole="stu_module" ToRole="student" />
+    <Property Name="mark" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="lec_module" Relationship="Self.pk1" FromRole="stu_module" ToRole="lec_module" />
+    <NavigationProperty Name="student1" Relationship="Self.pk2" FromRole="stu_module" ToRole="student" />
   </EntityType>
   <EntityType Name="student">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="uniId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="70" FixedLength="true" Unicode="true" />
-    <Property Name="degree" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-    <Property Name="intakeYear" Type="Int32" />
-    <Property Name="status" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="stu_module" Relationship="Self.FK_stu_module_student" FromRole="student" ToRole="stu_module" />
+    <Property Name="uni_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="intake" Type="Int32" Nullable="false" />
+    <Property Name="faculty" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="degree" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="studentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="stu_module" Relationship="Self.pk2" FromRole="student" ToRole="stu_module" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK_lec_module_lecturer">
-    <End Role="lecturer" Type="Self.lecturer" Multiplicity="1" />
-    <End Role="lec_module" Type="Self.lec_module" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="lecturer">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="lec_module">
-        <PropertyRef Name="lecturer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_lec_module_module">
+  <Association Name="lec_module_ibfk_1">
     <End Role="module" Type="Self.module" Multiplicity="1" />
     <End Role="lec_module" Type="Self.lec_module" Multiplicity="*" />
     <ReferentialConstraint>
@@ -89,7 +72,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_stu_module_student">
+  <Association Name="lec_module_ibfk_2">
+    <End Role="lecturer" Type="Self.lecturer" Multiplicity="1" />
+    <End Role="lec_module" Type="Self.lec_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lecturer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lec_module">
+        <PropertyRef Name="lecturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk1">
+    <End Role="lec_module" Type="Self.lec_module" Multiplicity="1" />
+    <End Role="stu_module" Type="Self.stu_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lec_module">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="stu_module">
+        <PropertyRef Name="module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk2">
     <End Role="student" Type="Self.student" Multiplicity="1" />
     <End Role="stu_module" Type="Self.stu_module" Multiplicity="*" />
     <ReferentialConstraint>
@@ -101,22 +108,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="stu_dbEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="student_dataEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="lec_module" EntityType="Self.lec_module" />
     <EntitySet Name="lecturers" EntityType="Self.lecturer" />
     <EntitySet Name="modules" EntityType="Self.module" />
     <EntitySet Name="stu_module" EntityType="Self.stu_module" />
     <EntitySet Name="students" EntityType="Self.student" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <AssociationSet Name="FK_lec_module_lecturer" Association="Self.FK_lec_module_lecturer">
-      <End Role="lecturer" EntitySet="lecturers" />
-      <End Role="lec_module" EntitySet="lec_module" />
-    </AssociationSet>
-    <AssociationSet Name="FK_lec_module_module" Association="Self.FK_lec_module_module">
+    <AssociationSet Name="lec_module_ibfk_1" Association="Self.lec_module_ibfk_1">
       <End Role="module" EntitySet="modules" />
       <End Role="lec_module" EntitySet="lec_module" />
     </AssociationSet>
-    <AssociationSet Name="FK_stu_module_student" Association="Self.FK_stu_module_student">
+    <AssociationSet Name="lec_module_ibfk_2" Association="Self.lec_module_ibfk_2">
+      <End Role="lecturer" EntitySet="lecturers" />
+      <End Role="lec_module" EntitySet="lec_module" />
+    </AssociationSet>
+    <AssociationSet Name="pk1" Association="Self.pk1">
+      <End Role="lec_module" EntitySet="lec_module" />
+      <End Role="stu_module" EntitySet="stu_module" />
+    </AssociationSet>
+    <AssociationSet Name="pk2" Association="Self.pk2">
       <End Role="student" EntitySet="students" />
       <End Role="stu_module" EntitySet="stu_module" />
     </AssociationSet>

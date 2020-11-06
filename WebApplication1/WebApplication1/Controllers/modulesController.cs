@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class modulesController : Controller
     {
-        private stu_dbEntities2 db = new stu_dbEntities2();
+        private student_dataEntities db = new student_dataEntities();
 
         // GET: modules
         public async Task<ActionResult> Index()

@@ -14,11 +14,19 @@ namespace WebApplication1.Models
     
     public partial class lec_module
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public lec_module()
+        {
+            this.stu_module = new HashSet<stu_module>();
+        }
+    
         public int id { get; set; }
         public int lecturer { get; set; }
         public int module { get; set; }
     
-        public virtual lecturer lecturer1 { get; set; }
         public virtual module module1 { get; set; }
+        public virtual lecturer lecturer1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<stu_module> stu_module { get; set; }
     }
 }
