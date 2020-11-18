@@ -13,14 +13,18 @@ namespace WebApplication1.Models
     {
         private string _email;
         private string _password;
-        private string _id;
+        public string _id="asdasdas";
+        private string _role;
+        
 
         public string getEmail() {return _email; }
 
         public string getPassword() { return _password; }
 
         public void setId(string data){ _id = data;}
+        public void setRole(string data) { _role = data; }
 
+        public string getRole() { return _role;}
         public string getId() { return _id; }
 
         public void setEmail(string data) { _email = data; }
@@ -44,7 +48,8 @@ namespace WebApplication1.Models
              while (dataReader.Read())
              {
                  _id = dataReader.GetValue(1).ToString();
-                 cnn.Close();
+                 _role = dataReader.GetValue(8).ToString();
+                cnn.Close();
                  return true;
             }
             cnn.Close();

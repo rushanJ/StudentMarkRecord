@@ -17,7 +17,8 @@ namespace WebApplication1.Models
         public int id { get; set; }
         public int student { get; set; }
         public int module { get; set; }
-        public int mark { get; set; }
+        public int assignmentMark { get; set; }
+        public int examMark { get; set; }
     
         public virtual lec_module lec_module { get; set; }
         public virtual student student1 { get; set; }

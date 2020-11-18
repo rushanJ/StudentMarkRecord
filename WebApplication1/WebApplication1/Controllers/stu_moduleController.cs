@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class stu_moduleController : Controller
     {
-        private student_dataEntities db = new student_dataEntities();
+        private student_dataEntities2 db = new student_dataEntities2();
 
         // GET: stu_module
         public async Task<ActionResult> Index()
@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
         // GET: stu_module/Create
         public ActionResult Create()
         {
-            ViewBag.module = new SelectList(db.modules, "id", "name");
+            ViewBag.module = new SelectList(db.lec_module, "id", "id");
             ViewBag.student = new SelectList(db.students, "id", "uni_id");
             return View();
         }
@@ -50,7 +50,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,student,module,mark")] stu_module stu_module)
+        public async Task<ActionResult> Create([Bind(Include = "id,student,module,assignmentMark,examMark")] stu_module stu_module)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,student,module,mark")] stu_module stu_module)
+        public async Task<ActionResult> Edit([Bind(Include = "id,student,module,assignmentMark,examMark")] stu_module stu_module)
         {
             if (ModelState.IsValid)
             {

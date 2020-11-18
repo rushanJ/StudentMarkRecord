@@ -13,10 +13,10 @@ namespace WebApplication1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class student_dataEntities : DbContext
+    public partial class student_dataEntities2 : DbContext
     {
-        public student_dataEntities()
-            : base("name=student_dataEntities")
+        public student_dataEntities2()
+            : base("name=student_dataEntities2")
         {
         }
     
@@ -25,10 +25,14 @@ namespace WebApplication1.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<degree> degrees { get; set; }
+        public virtual DbSet<department> departments { get; set; }
+        public virtual DbSet<intake> intakes { get; set; }
         public virtual DbSet<lec_module> lec_module { get; set; }
         public virtual DbSet<lecturer> lecturers { get; set; }
         public virtual DbSet<module> modules { get; set; }
         public virtual DbSet<stu_module> stu_module { get; set; }
         public virtual DbSet<student> students { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

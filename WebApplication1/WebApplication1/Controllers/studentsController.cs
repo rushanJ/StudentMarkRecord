@@ -13,12 +13,13 @@ namespace WebApplication1.Controllers
 {
     public class studentsController : Controller
     {
-        private student_dataEntities db = new student_dataEntities();
+        private student_dataEntities2 db = new student_dataEntities2();
 
         // GET: students
         public async Task<ActionResult> Index()
         {
-            return View(await db.students.ToListAsync());
+            var students = db.students.Include(s => s.degree1).Include(s => s.intake1);
+            return View(await students.ToListAsync());
         }
 
         // GET: students/Details/5
@@ -39,6 +40,8 @@ namespace WebApplication1.Controllers
         // GET: students/Create
         public ActionResult Create()
         {
+            ViewBag.degree = new SelectList(db.degrees, "id", "name");
+            ViewBag.intake = new SelectList(db.intakes, "id", "name");
             return View();
         }
 
@@ -56,6 +59,8 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.degree = new SelectList(db.degrees, "id", "name", student.degree);
+            ViewBag.intake = new SelectList(db.intakes, "id", "name", student.intake);
             return View(student);
         }
 
@@ -71,6 +76,8 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.degree = new SelectList(db.degrees, "id", "name", student.degree);
+            ViewBag.intake = new SelectList(db.intakes, "id", "name", student.intake);
             return View(student);
         }
 
@@ -87,6 +94,8 @@ namespace WebApplication1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.degree = new SelectList(db.degrees, "id", "name", student.degree);
+            ViewBag.intake = new SelectList(db.intakes, "id", "name", student.intake);
             return View(student);
         }
 

@@ -13,12 +13,12 @@ namespace WebApplication1.Controllers
 {
     public class lec_moduleController : Controller
     {
-        private student_dataEntities db = new student_dataEntities();
+        private student_dataEntities2 db = new student_dataEntities2();
 
         // GET: lec_module
         public async Task<ActionResult> Index()
         {
-            var lec_module = db.lec_module.Include(l => l.module1).Include(l => l.lecturer1);
+            var lec_module = db.lec_module.Include(l => l.degree1).Include(l => l.intake1).Include(l => l.module1).Include(l => l.lecturer1);
             return View(await lec_module.ToListAsync());
         }
 
@@ -40,6 +40,8 @@ namespace WebApplication1.Controllers
         // GET: lec_module/Create
         public ActionResult Create()
         {
+            ViewBag.degree = new SelectList(db.degrees, "id", "name");
+            ViewBag.intake = new SelectList(db.intakes, "id", "name");
             ViewBag.module = new SelectList(db.modules, "id", "code");
             ViewBag.lecturer = new SelectList(db.lecturers, "id", "uni_id");
             return View();
@@ -50,7 +52,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,lecturer,module")] lec_module lec_module)
+        public async Task<ActionResult> Create([Bind(Include = "id,lecturer,module,degree,intake")] lec_module lec_module)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +61,8 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.degree = new SelectList(db.degrees, "id", "name", lec_module.degree);
+            ViewBag.intake = new SelectList(db.intakes, "id", "name", lec_module.intake);
             ViewBag.module = new SelectList(db.modules, "id", "code", lec_module.module);
             ViewBag.lecturer = new SelectList(db.lecturers, "id", "uni_id", lec_module.lecturer);
             return View(lec_module);
@@ -76,6 +80,8 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.degree = new SelectList(db.degrees, "id", "name", lec_module.degree);
+            ViewBag.intake = new SelectList(db.intakes, "id", "name", lec_module.intake);
             ViewBag.module = new SelectList(db.modules, "id", "code", lec_module.module);
             ViewBag.lecturer = new SelectList(db.lecturers, "id", "uni_id", lec_module.lecturer);
             return View(lec_module);
@@ -86,7 +92,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,lecturer,module")] lec_module lec_module)
+        public async Task<ActionResult> Edit([Bind(Include = "id,lecturer,module,degree,intake")] lec_module lec_module)
         {
             if (ModelState.IsValid)
             {
@@ -94,6 +100,8 @@ namespace WebApplication1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.degree = new SelectList(db.degrees, "id", "name", lec_module.degree);
+            ViewBag.intake = new SelectList(db.intakes, "id", "name", lec_module.intake);
             ViewBag.module = new SelectList(db.modules, "id", "code", lec_module.module);
             ViewBag.lecturer = new SelectList(db.lecturers, "id", "uni_id", lec_module.lecturer);
             return View(lec_module);

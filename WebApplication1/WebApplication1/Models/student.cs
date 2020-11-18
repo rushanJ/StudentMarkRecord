@@ -27,9 +27,11 @@ namespace WebApplication1.Models
         public string email { get; set; }
         public int intake { get; set; }
         public string faculty { get; set; }
-        public string degree { get; set; }
+        public int degree { get; set; }
         public string studentStatus { get; set; }
     
+        public virtual degree degree1 { get; set; }
+        public virtual intake intake1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<stu_module> stu_module { get; set; }
     }

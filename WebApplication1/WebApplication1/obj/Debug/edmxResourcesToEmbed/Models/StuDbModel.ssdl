@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="student_dataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="degree">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="faculty" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="department" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="70" Nullable="false" />
+  </EntityType>
+  <EntityType Name="intake">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="70" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lec_module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lecturer" Type="int" Nullable="false" />
+    <Property Name="module" Type="int" Nullable="false" />
+    <Property Name="degree" Type="int" Nullable="false" />
+    <Property Name="intake" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lecturer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uni_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="contactNo" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="department" Type="int" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="lecturerStatus" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="credit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="stu_module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="student" Type="int" Nullable="false" />
+    <Property Name="module" Type="int" Nullable="false" />
+    <Property Name="assignmentMark" Type="int" Nullable="false" />
+    <Property Name="examMark" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uni_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="intake" Type="int" Nullable="false" />
+    <Property Name="faculty" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="degree" Type="int" Nullable="false" />
+    <Property Name="studentStatus" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_student_degree">
+    <End Role="degree" Type="Self.degree" Multiplicity="1" />
+    <End Role="student" Type="Self.student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="degree">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="student">
+        <PropertyRef Name="degree" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="intake_ibfk_1">
+    <End Role="intake" Type="Self.intake" Multiplicity="1" />
+    <End Role="student" Type="Self.student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="intake">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="student">
+        <PropertyRef Name="intake" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lec_module_ibfk_1">
+    <End Role="module" Type="Self.module" Multiplicity="1" />
+    <End Role="lec_module" Type="Self.lec_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="module">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lec_module">
+        <PropertyRef Name="module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lec_module_ibfk_2">
+    <End Role="degree" Type="Self.degree" Multiplicity="1" />
+    <End Role="lec_module" Type="Self.lec_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="degree">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lec_module">
+        <PropertyRef Name="degree" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lec_module_ibfk_3">
+    <End Role="intake" Type="Self.intake" Multiplicity="1" />
+    <End Role="lec_module" Type="Self.lec_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="intake">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lec_module">
+        <PropertyRef Name="intake" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lec_module_ibfk_4">
+    <End Role="lecturer" Type="Self.lecturer" Multiplicity="1" />
+    <End Role="lec_module" Type="Self.lec_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lecturer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lec_module">
+        <PropertyRef Name="lecturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lecturer_ibfk_1">
+    <End Role="department" Type="Self.department" Multiplicity="1" />
+    <End Role="degree" Type="Self.degree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="degree">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lecturer_ibfk_3434">
+    <End Role="department" Type="Self.department" Multiplicity="1" />
+    <End Role="lecturer" Type="Self.lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lecturer">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk1">
+    <End Role="lec_module" Type="Self.lec_module" Multiplicity="1" />
+    <End Role="stu_module" Type="Self.stu_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lec_module">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="stu_module">
+        <PropertyRef Name="module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk2">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="stu_module" Type="Self.stu_module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="stu_module">
+        <PropertyRef Name="student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="student_dataModelStoreContainer">
+    <EntitySet Name="degree" EntityType="Self.degree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="intake" EntityType="Self.intake" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lec_module" EntityType="Self.lec_module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lecturer" EntityType="Self.lecturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="module" EntityType="Self.module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="stu_module" EntityType="Self.stu_module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_student_degree" Association="Self.FK_student_degree">
+      <End Role="degree" EntitySet="degree" />
+      <End Role="student" EntitySet="student" />
+    </AssociationSet>
+    <AssociationSet Name="intake_ibfk_1" Association="Self.intake_ibfk_1">
+      <End Role="intake" EntitySet="intake" />
+      <End Role="student" EntitySet="student" />
+    </AssociationSet>
+    <AssociationSet Name="lec_module_ibfk_1" Association="Self.lec_module_ibfk_1">
+      <End Role="module" EntitySet="module" />
+      <End Role="lec_module" EntitySet="lec_module" />
+    </AssociationSet>
+    <AssociationSet Name="lec_module_ibfk_2" Association="Self.lec_module_ibfk_2">
+      <End Role="degree" EntitySet="degree" />
+      <End Role="lec_module" EntitySet="lec_module" />
+    </AssociationSet>
+    <AssociationSet Name="lec_module_ibfk_3" Association="Self.lec_module_ibfk_3">
+      <End Role="intake" EntitySet="intake" />
+      <End Role="lec_module" EntitySet="lec_module" />
+    </AssociationSet>
+    <AssociationSet Name="lec_module_ibfk_4" Association="Self.lec_module_ibfk_4">
+      <End Role="lecturer" EntitySet="lecturer" />
+      <End Role="lec_module" EntitySet="lec_module" />
+    </AssociationSet>
+    <AssociationSet Name="lecturer_ibfk_1" Association="Self.lecturer_ibfk_1">
+      <End Role="department" EntitySet="department" />
+      <End Role="degree" EntitySet="degree" />
+    </AssociationSet>
+    <AssociationSet Name="lecturer_ibfk_3434" Association="Self.lecturer_ibfk_3434">
+      <End Role="department" EntitySet="department" />
+      <End Role="lecturer" EntitySet="lecturer" />
+    </AssociationSet>
+    <AssociationSet Name="pk1" Association="Self.pk1">
+      <End Role="lec_module" EntitySet="lec_module" />
+      <End Role="stu_module" EntitySet="stu_module" />
+    </AssociationSet>
+    <AssociationSet Name="pk2" Association="Self.pk2">
+      <End Role="student" EntitySet="student" />
+      <End Role="stu_module" EntitySet="stu_module" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

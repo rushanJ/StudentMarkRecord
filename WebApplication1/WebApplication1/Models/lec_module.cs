@@ -23,7 +23,11 @@ namespace WebApplication1.Models
         public int id { get; set; }
         public int lecturer { get; set; }
         public int module { get; set; }
+        public int degree { get; set; }
+        public int intake { get; set; }
     
+        public virtual degree degree1 { get; set; }
+        public virtual intake intake1 { get; set; }
         public virtual module module1 { get; set; }
         public virtual lecturer lecturer1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,12 +13,13 @@ namespace WebApplication1.Controllers
 {
     public class lecturersController : Controller
     {
-        private student_dataEntities db = new student_dataEntities();
+        private student_dataEntities2 db = new student_dataEntities2();
 
         // GET: lecturers
         public async Task<ActionResult> Index()
         {
-            return View(await db.lecturers.ToListAsync());
+            var lecturers = db.lecturers.Include(l => l.department1);
+            return View(await lecturers.ToListAsync());
         }
 
         // GET: lecturers/Details/5
@@ -39,6 +40,7 @@ namespace WebApplication1.Controllers
         // GET: lecturers/Create
         public ActionResult Create()
         {
+            ViewBag.department = new SelectList(db.departments, "id", "name");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,uni_id,firstName,lastName,email,password,lecturerStatus")] lecturer lecturer)
+        public async Task<ActionResult> Create([Bind(Include = "id,uni_id,firstName,lastName,email,contactNo,department,password,role,lecturerStatus")] lecturer lecturer)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.department = new SelectList(db.departments, "id", "name", lecturer.department);
             return View(lecturer);
         }
 
@@ -71,6 +74,7 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.department = new SelectList(db.departments, "id", "name", lecturer.department);
             return View(lecturer);
         }
 
@@ -79,7 +83,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,uni_id,firstName,lastName,email,password,lecturerStatus")] lecturer lecturer)
+        public async Task<ActionResult> Edit([Bind(Include = "id,uni_id,firstName,lastName,email,contactNo,department,password,role,lecturerStatus")] lecturer lecturer)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace WebApplication1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.department = new SelectList(db.departments, "id", "name", lecturer.department);
             return View(lecturer);
         }
 

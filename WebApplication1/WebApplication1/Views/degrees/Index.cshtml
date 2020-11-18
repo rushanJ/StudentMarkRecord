@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplication1.Models.degree>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin: 20px">Degree </h2>
+
+<p style="margin: 20px" class="btn btn-info pull-right">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" >
+    <thead class=" text-primary">
+    <tr>
+        <th>
+          Name
+        </th>
+        <th>
+            Faculty
+        </th>
+        <th>
+            Department
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.faculty)         
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.department1.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.id}) |
+                @Html.ActionLink("Details", "Details", new {id = item.id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.id})
+            </td>
+        </tr>
+    }
+
+</table>

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Details</h2>
@@ -10,6 +11,22 @@
     <h4>lec_module</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.degree1.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.degree1.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intake1.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intake1.name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.module1.code)
         </dt>

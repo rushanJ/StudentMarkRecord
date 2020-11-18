@@ -128,7 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\degreesController.cs" />
+    <Compile Include="Controllers\departmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\intakesController.cs" />
     <Compile Include="Controllers\lecturersController.cs" />
     <Compile Include="Controllers\lec_moduleController.cs" />
     <Compile Include="Controllers\modulesController.cs" />
@@ -137,36 +140,48 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataSetModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetModel.Context.tt</DependentUpon>
+    <Compile Include="Models\degree.cs">
+      <DependentUpon>StuDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataSetModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataSetModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetModel.edmx</DependentUpon>
+    <Compile Include="Models\department.cs">
+      <DependentUpon>StuDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeModule.cs" />
+    <Compile Include="Models\intake.cs">
+      <DependentUpon>StuDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\lecturer.cs">
-      <DependentUpon>DataSetModel.tt</DependentUpon>
+      <DependentUpon>StuDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\lec_module.cs">
-      <DependentUpon>DataSetModel.tt</DependentUpon>
+      <DependentUpon>StuDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\module.cs">
-      <DependentUpon>DataSetModel.tt</DependentUpon>
+      <DependentUpon>StuDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StuDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StuDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StuDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StuDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StuDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StuDbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\student.cs">
-      <DependentUpon>DataSetModel.tt</DependentUpon>
+      <DependentUpon>StuDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\stu_module.cs">
-      <DependentUpon>DataSetModel.tt</DependentUpon>
+      <DependentUpon>StuDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>StuDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -179,24 +194,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DataSetModel.Context.tt">
+    <Content Include="Models\StuDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataSetModel.edmx</DependentUpon>
-      <LastGenOutput>DataSetModel.Context.cs</LastGenOutput>
+      <DependentUpon>StuDbModel.edmx</DependentUpon>
+      <LastGenOutput>StuDbModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DataSetModel.tt">
+    <Content Include="Models\StuDbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataSetModel.edmx</DependentUpon>
-      <LastGenOutput>DataSetModel.cs</LastGenOutput>
+      <DependentUpon>StuDbModel.edmx</DependentUpon>
+      <LastGenOutput>StuDbModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DataSetModel.edmx">
+    <EntityDeploy Include="Models\StuDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataSetModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>StuDbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DataSetModel.edmx.diagram">
-      <DependentUpon>DataSetModel.edmx</DependentUpon>
+    <Content Include="Models\StuDbModel.edmx.diagram">
+      <DependentUpon>StuDbModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -223,11 +238,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\AdminDashboard.cshtml" />
+    <Content Include="Views\Home\LecturerDashboard.cshtml" />
     <Content Include="Views\students\Create.cshtml" />
     <Content Include="Views\students\Delete.cshtml" />
     <Content Include="Views\students\Details.cshtml" />
     <Content Include="Views\students\Edit.cshtml" />
     <Content Include="Views\students\Index.cshtml" />
+    <Content Include="Views\stu_module\Create.cshtml" />
+    <Content Include="Views\stu_module\Delete.cshtml" />
+    <Content Include="Views\stu_module\Details.cshtml" />
+    <Content Include="Views\stu_module\Edit.cshtml" />
+    <Content Include="Views\stu_module\Index.cshtml" />
     <Content Include="Views\modules\Create.cshtml" />
     <Content Include="Views\modules\Delete.cshtml" />
     <Content Include="Views\modules\Details.cshtml" />
@@ -243,13 +265,22 @@
     <Content Include="Views\lec_module\Details.cshtml" />
     <Content Include="Views\lec_module\Edit.cshtml" />
     <Content Include="Views\lec_module\Index.cshtml" />
-    <Content Include="Views\stu_module\Create.cshtml" />
-    <Content Include="Views\stu_module\Delete.cshtml" />
-    <Content Include="Views\stu_module\Details.cshtml" />
-    <Content Include="Views\stu_module\Edit.cshtml" />
-    <Content Include="Views\stu_module\Index.cshtml" />
-    <Content Include="Views\Home\AdminDashboard.cshtml" />
-    <Content Include="Views\Home\LecturerDashboard.cshtml" />
+    <Content Include="Views\intakes\Create.cshtml" />
+    <Content Include="Views\intakes\Delete.cshtml" />
+    <Content Include="Views\intakes\Details.cshtml" />
+    <Content Include="Views\intakes\Edit.cshtml" />
+    <Content Include="Views\intakes\Index.cshtml" />
+    <Content Include="Views\departments\Create.cshtml" />
+    <Content Include="Views\departments\Delete.cshtml" />
+    <Content Include="Views\departments\Details.cshtml" />
+    <Content Include="Views\departments\Edit.cshtml" />
+    <Content Include="Views\departments\Index.cshtml" />
+    <Content Include="Views\degrees\Create.cshtml" />
+    <Content Include="Views\degrees\Delete.cshtml" />
+    <Content Include="Views\degrees\Details.cshtml" />
+    <Content Include="Views\degrees\Edit.cshtml" />
+    <Content Include="Views\degrees\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

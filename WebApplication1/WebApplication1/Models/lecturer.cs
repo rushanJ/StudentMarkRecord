@@ -25,9 +25,13 @@ namespace WebApplication1.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string email { get; set; }
+        public string contactNo { get; set; }
+        public int department { get; set; }
         public string password { get; set; }
+        public string role { get; set; }
         public string lecturerStatus { get; set; }
     
+        public virtual department department1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lec_module> lec_module { get; set; }
     }

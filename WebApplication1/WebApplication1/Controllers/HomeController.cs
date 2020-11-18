@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers
 
              if (homeModule.auth())
              {
-                if (homeModule.getId()=="0") return RedirectToAction("AdminDashboard", "Home");
+                if (homeModule.getRole()=="ADMIN") return RedirectToAction("AdminDashboard", "Home");
                 else return RedirectToAction("LecturerDashboard", "Home");
             }
              else return RedirectToAction("Index", "Home");
