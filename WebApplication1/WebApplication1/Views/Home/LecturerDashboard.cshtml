@@ -1,10 +1,34 @@
-﻿
+﻿@model  WebApplication1.ViewModel.LecModuleViewModel
 @{
     ViewBag.Title = "LecturerDashboard";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutLecturer.cshtml";
 }
 
 <h2>LecturerDashboard</h2>
 
-@Html.ActionLink("Asign Mark", "../stu_module") |
-<br />
+
+
+<div class="row">
+
+    @foreach (var item in Model.LecModule)
+    {
+       
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats" >
+                <div class="card-header card-header-primary card-header-icon" >
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <p class="card-category" ><h3 style="color:orangered;" >@item.moduleName</h3> </p>
+                    <h4 class="card-title"  > @Html.ActionLink("Add Marks", "../stu_module/Create", new { id = item.id }, new { @style = "color:green;" })</h4>
+                    <h4 class="card-title"> <a href="../stu_module/Index?id=@item.id") style="color:blue" >View Marks</a></h4>
+
+                </div>
+
+            </div>
+        </div>
+        
+
+    }
+</div>
+    <br />

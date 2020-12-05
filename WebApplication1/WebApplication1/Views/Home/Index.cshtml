@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
-<form action="Home/Auth" method="get">
+<form action="Home/Auth" method="POST" style="margin-top:50px; margin-left:400px">
+    <img src="https://upload.wikimedia.org/wikipedia/en/2/23/Kotelawala_Defence_University_crest.png" style="width: 250px" />
     <div class="form-group">
         <label for="email">Email address:</label>
         <input type="email" class="form-control" name="email">
@@ -13,5 +15,5 @@
     <div class="checkbox">
         <label><input type="checkbox"> Remember me</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" style="width: 300px">Login</button>
 </form>

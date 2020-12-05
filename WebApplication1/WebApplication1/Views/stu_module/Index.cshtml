@@ -2,15 +2,17 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutLecturer.cshtml";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<input type="text" id="myInput" onkeyup="searchByid()" placeholder="Search for Students.." title="Type in a name">
+
+<input type="text" id="myInput1" onkeyup="searchByModule()" placeholder="Search for names.." title="Type in a name" Style = "display:none">
+
+
+<table class="table" id="myTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.assignmentMark)
@@ -18,7 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.examMark)
         </th>
-        <th>
+        <th Style="display:none">
             @Html.DisplayNameFor(model => model.lec_module.id)
         </th>
         <th>
@@ -27,26 +29,79 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.assignmentMark)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.examMark)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lec_module.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.student1.uni_id)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.assignmentMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.examMark)
+            </td>
+            <td Style="display:none">
+                @Html.DisplayFor(modelItem => item.lec_module.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.student1.uni_id)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+<script>
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var input = url.searchParams.get("id");
+    console.log(input);
+    document.getElementById("myInput1").value = input;
+
+
+    searchByModule()
+    function searchByid() {
+        
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function searchByModule() {
+        var input, filter, table, tr, td, i, txtValue;
+
+        input = document.getElementById("myInput1");
+        filter = input.value.toUpperCase();
+      //  alert(filter);
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>

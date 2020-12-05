@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using WebApplication1.ViewModel;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        student_dataEntities2 context = new student_dataEntities2();
+
+        HomeModule homeModule = new HomeModule();
         public ActionResult Index()
         {
             return View();
@@ -38,16 +43,29 @@ namespace WebApplication1.Controllers
         public ActionResult LecturerDashboard()
         {
             ViewBag.Message = "Your contact page.";
+           // homeModule.setId(Session["id"].ToString());
 
-            return View();
+            //var lecModule = new List<LecModule>
+            // {
+            //    new LecModule{moduleName="sdasd"},
+            //    new LecModule{moduleName="sdasd"}
+            //};
+            // lecModule.Add( new LecModule { moduleName = "sdsefdasd" });
+            homeModule.LecModuleList(Session["id"].ToString());
+            var viewModel = new LecModuleViewModel
+            {
+                HomeModule = homeModule,
+                LecModule = homeModule.lecModule
+            };
+
+            return View(viewModel);
         }
-
 
         public ActionResult Auth(String email , String password)
         {
             ViewBag.Message = "Your contact page.";
 
-             HomeModule homeModule= new  HomeModule();
+           //  HomeModule homeModule= new  HomeModule();
 
              homeModule.setEmail(email);
              homeModule.setPassword(password);
@@ -55,10 +73,24 @@ namespace WebApplication1.Controllers
 
              if (homeModule.auth())
              {
+
+                Session["id"] = homeModule.getId();
                 if (homeModule.getRole()=="ADMIN") return RedirectToAction("AdminDashboard", "Home");
                 else return RedirectToAction("LecturerDashboard", "Home");
             }
              else return RedirectToAction("Index", "Home");
         }
+        public ActionResult ModuleList()
+        {
+            int id = 1;
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter("@lecID",2)
+            };
+            var data = context.Database.SqlQuery<LecModule>("lecAssignModule @lecID", param).ToList();
+            return View(data);
+        }
+        
+
     }
 }

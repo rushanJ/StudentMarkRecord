@@ -37,10 +37,36 @@ namespace WebApplication1.Controllers
             return View(stu_module);
         }
 
+        public ActionResult CreateTest( int id) {
+            var lec_module = db.lec_module
+                   .Select(s => new
+                   {
+
+                       Text = id,
+                       Value = id
+
+                   })
+                   .ToList();
+            ViewBag.module = new SelectList(lec_module, "Text", "Value");
+            ViewBag.student = new SelectList(db.students, "id", "uni_id");
+            return View();
+        }
         // GET: stu_module/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.module = new SelectList(db.lec_module, "id", "id");
+            
+            var lec_module = db.lec_module
+                    .Select(s => new
+                    {
+
+                        Text = id,
+                        Value = id
+
+                    })
+                    .ToList();
+
+
+            ViewBag.module = new SelectList(lec_module, "Text", "Value");
             ViewBag.student = new SelectList(db.students, "id", "uni_id");
             return View();
         }
@@ -56,7 +82,7 @@ namespace WebApplication1.Controllers
             {
                 db.stu_module.Add(stu_module);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.module = new SelectList(db.lec_module, "id", "id", stu_module.module);

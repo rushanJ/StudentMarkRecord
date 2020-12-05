@@ -14,41 +14,43 @@
 <body style="background-color: #2f3838;
         color: white;
     ">
-<div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="black">
-        <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    <div class="wrapper ">
+        <div class="sidebar" data-color="purple" data-background-color="black">
+            <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-        Tip 2: you can also add an image using data-image tag
-        -->
-        <div class="logo">
-            <div class="simple-text logo-mini">
-                Hello
+            Tip 2: you can also add an image using data-image tag
+            -->
+            <div class="logo">
+                <div class="simple-text logo-mini">
+                    Hello
+                </div>
+                <div class="simple-text logo-normal">
+                    WELCOME TO KDU
+                </div>
             </div>
-            <div class="simple-text logo-normal">
-                WELCOME TO KDU
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item active  ">
+                        <a class="nav-link" href="/Home/AdminDashboard"> <i class="material-icons">dashboard</i><p>Dashboard</p></a><br />
+                        <a class="nav-link" href="/Intakes"><i class="material-icons">dashboard</i><p>Intake</p></a><br />
+                        <a class="nav-link" href="/degrees/"><i class="material-icons">dashboard</i><p>Degree</p></a><br />
+                        <a class="nav-link" href="/departments/"><i class="material-icons">dashboard</i><p>Department</p></a><br />
+                        <a class="nav-link" href="/modules/"><i class="material-icons">dashboard</i><p>Module</p></a><br />
+                        <a class="nav-link" href="/lecturers/"><i class="material-icons">dashboard</i><p>Lecturer</p></a><br />
+                        <a class="nav-link" href="/students/"><i class="material-icons">dashboard</i><p>Student</p></a><br />
+                        <a class="nav-link" href="/lec_module/"><i class="material-icons">dashboard</i><p>Module Asigns</p></a><br />
+                        <a class="nav-link" href="/"><i class="material-icons">dashboard</i><p>Logout</p></a><br />
+                    </li>
+                    <!-- your sidebar here -->
+                </ul>
             </div>
         </div>
-        <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="/AdminDashboard"> <i class="material-icons">dashboard</i><p>Dashboard</p></a><br/>
-                    <a class="nav-link" href="/Intakes"><i class="material-icons">dashboard</i><p>Intake</p></a><br />
-                    <a class="nav-link" href="/degrees/"><i class="material-icons">dashboard</i><p>Degree</p></a><br />
-                    <a class="nav-link" href="/departments/"><i class="material-icons">dashboard</i><p>Department</p></a><br />
-                    <a class="nav-link" href="/modules/"><i class="material-icons">dashboard</i><p>Module</p></a><br />
-                    <a class="nav-link" href="/lecturers/"><i class="material-icons">dashboard</i><p>Lecturer</p></a><br />
-                    <a class="nav-link" href="/students/"><i class="material-icons">dashboard</i><p>Student</p></a><br />
-                </li>
-                <!-- your sidebar here -->
-            </ul>
+        <div class="main-panel" style="margin-right: -30px;">
+            @RenderBody()
+
+
         </div>
-    </div>
-    <div class="main-panel" style="margin-right: -30px;">
-        @RenderBody()
-
-
-    </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

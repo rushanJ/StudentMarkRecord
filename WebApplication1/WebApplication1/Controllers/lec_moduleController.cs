@@ -38,12 +38,22 @@ namespace WebApplication1.Controllers
         }
 
         // GET: lec_module/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            var lecturers = db.lecturers
+                    .Select(s => new
+                    {
+
+                        Text = id,
+                        Value = id
+
+                    })
+                    .ToList();
+
             ViewBag.degree = new SelectList(db.degrees, "id", "name");
             ViewBag.intake = new SelectList(db.intakes, "id", "name");
             ViewBag.module = new SelectList(db.modules, "id", "code");
-            ViewBag.lecturer = new SelectList(db.lecturers, "id", "uni_id");
+            ViewBag.lecturer = new SelectList(lecturers, "Value", "Text");
             return View();
         }
 
@@ -60,6 +70,8 @@ namespace WebApplication1.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
+
 
             ViewBag.degree = new SelectList(db.degrees, "id", "name", lec_module.degree);
             ViewBag.intake = new SelectList(db.intakes, "id", "name", lec_module.intake);
