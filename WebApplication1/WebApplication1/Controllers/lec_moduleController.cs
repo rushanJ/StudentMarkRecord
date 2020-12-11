@@ -22,6 +22,7 @@ namespace WebApplication1.Controllers
             return View(await lec_module.ToListAsync());
         }
 
+       
         // GET: lec_module/Details/5
         public async Task<ActionResult> Details(int? id)
         {

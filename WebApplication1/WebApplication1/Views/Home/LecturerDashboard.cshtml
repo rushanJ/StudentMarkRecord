@@ -14,18 +14,20 @@
     {
        
         <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats" >
-                <div class="card-header card-header-primary card-header-icon" >
-                    <div class="card-icon">
-                        <i class="material-icons">assignment</i>
+            <a href="../Home/LectureDashboard?id=@item.id">
+                <div class="card card-stats">
+                    <div class="card-header card-header-primary card-header-icon" >
+                        <div class="card-icon" style="width:30px">
+                          
+                        </div>
+                        <p class="card-category"><h3 style="color:orangered;">@item.moduleName</h3> </p>
+                        <h4 class="card-title" style = "color:green;">Intake @item.intake </h4>
+                        
+
                     </div>
-                    <p class="card-category" ><h3 style="color:orangered;" >@item.moduleName</h3> </p>
-                    <h4 class="card-title"  > @Html.ActionLink("Add Marks", "../stu_module/Create", new { id = item.id }, new { @style = "color:green;" })</h4>
-                    <h4 class="card-title"> <a href="../stu_module/Index?id=@item.id") style="color:blue" >View Marks</a></h4>
 
                 </div>
-
-            </div>
+            </a>
         </div>
         
 

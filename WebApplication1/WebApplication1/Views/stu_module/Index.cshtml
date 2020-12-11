@@ -15,41 +15,98 @@
 <table class="table" id="myTable">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.assignmentMark)
+            Student
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.examMark)
+            Assgnment Mark
+        </th>
+        <th>
+            Exam Mark
         </th>
         <th Style="display:none">
-            @Html.DisplayNameFor(model => model.lec_module.id)
+            Module
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.student1.uni_id)
+            Total
+        </th>
+        <th>
+            Grade
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.assignmentMark)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.examMark)
-            </td>
-            <td Style="display:none">
-                @Html.DisplayFor(modelItem => item.lec_module.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.student1.uni_id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.student1.uni_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.assignmentMark)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.examMark)
+    </td>
+    <td Style="display:none">
+        @Html.DisplayFor(modelItem => item.lec_module.id)
+    </td>
+    <td id="total">
+        @if (item.examMark > 35)
+        {
+            <div>@(item.assignmentMark * 0.3 + item.examMark * 0.7)</div>
+        }
+        else
+        {<div>Incompleatd</div>}
+
+    </td>
+    <td id="grade">
+        @if (item.examMark < 45)
+        {
+            <div>C-</div>
+        }
+        else if (item.examMark < 50)
+        {
+            <div>C</div>
+
+        }
+        else if (item.examMark < 55)
+        {
+            <div>C+</div>
+        }
+        else if (item.examMark < 60)
+        {
+            <div>B-</div>
+        }
+        else if (item.examMark < 65)
+        {
+            <div>B</div>
+        }
+        else if (item.examMark < 70)
+        {
+            <div>B+</div>
+        }
+        else if (item.examMark < 75)
+        {
+            <div>A-</div>
+        }
+        else if (item.examMark < 80)
+        {
+            <div>A</div>
+        }
+        else
+        {
+            <div>A+</div>
+        }
+    </td>
+    
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+    </td>
+</tr>
+       
     }
 
 </table>
@@ -72,7 +129,7 @@
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[3];
+            td = tr[i].getElementsByTagName("td")[1];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -92,7 +149,7 @@
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
+            td = tr[i].getElementsByTagName("td")[3];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {

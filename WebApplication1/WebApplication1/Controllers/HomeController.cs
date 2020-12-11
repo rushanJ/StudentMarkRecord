@@ -40,22 +40,30 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+      
         public ActionResult LecturerDashboard()
         {
             ViewBag.Message = "Your contact page.";
-           // homeModule.setId(Session["id"].ToString());
-
-            //var lecModule = new List<LecModule>
-            // {
-            //    new LecModule{moduleName="sdasd"},
-            //    new LecModule{moduleName="sdasd"}
-            //};
-            // lecModule.Add( new LecModule { moduleName = "sdsefdasd" });
+       
             homeModule.LecModuleList(Session["id"].ToString());
             var viewModel = new LecModuleViewModel
             {
                 HomeModule = homeModule,
                 LecModule = homeModule.lecModule
+            };
+
+            return View(viewModel);
+        }
+
+        public ActionResult LectureDashboard()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            homeModule.LecStatModuleList(Session["id"].ToString());
+            var viewModel = new LecStatModuleViewModel
+            {
+                HomeModule = homeModule,
+                LecModule = homeModule.lecStatModule
             };
 
             return View(viewModel);
@@ -80,16 +88,7 @@ namespace WebApplication1.Controllers
             }
              else return RedirectToAction("Index", "Home");
         }
-        public ActionResult ModuleList()
-        {
-            int id = 1;
-            SqlParameter[] param = new SqlParameter[]
-            {
-                new SqlParameter("@lecID",2)
-            };
-            var data = context.Database.SqlQuery<LecModule>("lecAssignModule @lecID", param).ToList();
-            return View(data);
-        }
+       
         
 
     }

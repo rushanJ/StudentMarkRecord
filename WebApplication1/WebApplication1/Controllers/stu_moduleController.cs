@@ -16,9 +16,11 @@ namespace WebApplication1.Controllers
         private student_dataEntities2 db = new student_dataEntities2();
 
         // GET: stu_module
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index( int id)
         {
-            var stu_module = db.stu_module.Include(s => s.lec_module).Include(s => s.student1);
+            var stu_module = db.stu_module.SqlQuery("select * from stu_module where module="+id);
+           // var stu_module = db.stu_module.Include(s => s.lec_module).Include(s => s.student1);
+           
             return View(await stu_module.ToListAsync());
         }
 

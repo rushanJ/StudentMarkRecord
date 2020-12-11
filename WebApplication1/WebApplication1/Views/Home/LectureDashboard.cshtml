@@ -1,0 +1,119 @@
+﻿@model  WebApplication1.ViewModel.LecStatModuleViewModel
+@{
+    ViewBag.Title = "LecturerDashboard";
+    Layout = "~/Views/Shared/_LayoutLecturer.cshtml";
+}
+
+<h2>LecturerDashboard</h2>
+
+
+
+<div class="row">
+
+    @foreach (var item in Model.LecModule)
+    {
+
+    <script>
+           aPlus = @item.countAPlus;
+           a = @item.countA;
+        aMin = @item.countAMin;
+
+         bPlus = @item.countBPlus;
+          b = @item.countB;
+        bMin = @item.countBMin;
+
+         cPlus = @item.countCPlus;
+           c = @item.countC;
+            cMin = @item.countCMin;
+
+            fail = cMin;
+            pass = aPlus + a + aMin + bPlus + b + bMin + cPlus + c;
+            function goToCreate(){
+                window.location.href = "../stu_module/Create/@item.id";
+
+        }
+        function goToView() {
+            window.location.href = "../stu_module/Index?id=@item.id";
+        }
+    </script>
+
+
+    }
+
+    <div class="row">
+        <div class="col-sm-6"><canvas id="myChart" width="400" height="400"></canvas> <div type="button" onclick="goToCreate()" class="btn  btn-lg" style="background-color:rgba(255,0,0,0.1);">Add Marks</div></div>
+        <div class="col-sm-6"><canvas id="myChart1" width="400" height="400"></canvas><button type="button" onclick="goToView()" class="btn btn-lg" style="background-color: rgba(203, 157, 212,0.1);">View Marks</button></div>
+    </div>
+
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [aPlus, a, aMin, bPlus, b, bMin, cPlus, c, cMin],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Pass', 'Fail'],
+                datasets: [{
+                    label: '# of Students',
+                    data: [pass, fail],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</div>
+    <br />
